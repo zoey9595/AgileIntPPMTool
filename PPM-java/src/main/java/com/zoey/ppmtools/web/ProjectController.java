@@ -1,6 +1,7 @@
 package com.zoey.ppmtools.web;
 
 import com.zoey.ppmtools.domain.Project;
+import com.zoey.ppmtools.services.MapValidationErrorService;
 import com.zoey.ppmtools.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,15 +21,17 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
+    @Autowired
+    private MapValidationErrorService mapValidationErrorService;
+
     @PostMapping("")
     public ResponseEntity<?> createNewProject(@Valid @RequestBody Project project, BindingResult result) {
 
-        if (result.hasErrors()) {
-            return new ResponseEntity<>("Invalid object", HttpStatus.BAD_REQUEST);
-        }
+        ResponseEntity<?> errorMap = mapValidationErrorService.mapValidationService(result);
+        if (errorMap != null) return errorMap;
 
         Project project1 = projectService.saveOrUpdateProject(project);
-        return new ResponseEntity<>(project, HttpStatus.CREATED);
+        return new ResponseEntity<>(project1, HttpStatus.CREATED);
     }
 
 
