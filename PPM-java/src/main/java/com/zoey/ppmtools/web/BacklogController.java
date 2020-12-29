@@ -1,6 +1,5 @@
 package com.zoey.ppmtools.web;
 
-import com.sun.tools.internal.xjc.reader.xmlschema.BindGreen;
 import com.zoey.ppmtools.domain.ProjectTask;
 import com.zoey.ppmtools.services.MapValidationErrorService;
 import com.zoey.ppmtools.services.ProjectTaskService;
@@ -10,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.naming.Binding;
 import javax.validation.Valid;
 
 @RestController
