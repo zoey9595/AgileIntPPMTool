@@ -1,5 +1,6 @@
 package com.zoey.ppmtools.web;
 
+import com.sun.tools.internal.xjc.reader.xmlschema.BindGreen;
 import com.zoey.ppmtools.domain.ProjectTask;
 import com.zoey.ppmtools.services.MapValidationErrorService;
 import com.zoey.ppmtools.services.ProjectTaskService;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.naming.Binding;
 import javax.validation.Valid;
 
 @RestController
@@ -36,5 +38,29 @@ public class BacklogController {
     @GetMapping("/{backlog_id}")
     public Iterable<ProjectTask> getProjectBacklog(@PathVariable String backlog_id) {
         return projectTaskService.findBacklogById(backlog_id);
+    }
+
+    @GetMapping("/{backlog_id}/{pt_id}")
+    public ResponseEntity<?> getProjectTask(@PathVariable String backlog_id, @PathVariable String pt_id) {
+        ProjectTask projectTask = projectTaskService.findProjectTaskByProjectSequence(backlog_id, pt_id);
+        return new ResponseEntity<>(projectTask, HttpStatus.OK);
+    }
+
+    @PatchMapping("/{backlog_id}/{pt_id}")
+    public ResponseEntity updateProjectTask(@Valid @RequestBody ProjectTask updatedProjectTask,
+                                            BindingResult result,
+                                            @PathVariable String backlog_id,
+                                            @PathVariable String pt_id) {
+        ResponseEntity<?> errorMap = mapValidationErrorService.mapValidationService(result);
+        if (errorMap != null) return errorMap;
+
+        ProjectTask projectTask = projectTaskService.updateByProjectSequence(updatedProjectTask, backlog_id, pt_id);
+        return new ResponseEntity<>(projectTask, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{backlog_id}/{pt_id}")
+    public ResponseEntity<?> deleteProjectTask(@PathVariable String backlog_id, @PathVariable String pt_id) {
+        projectTaskService.deleteProjectTaskByProjectSequence(backlog_id, pt_id);
+        return new ResponseEntity<>("Project Task '" + pt_id + "' was deleted successfully", HttpStatus.OK);
     }
 }
