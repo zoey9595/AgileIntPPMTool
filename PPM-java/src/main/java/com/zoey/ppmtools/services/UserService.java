@@ -1,6 +1,7 @@
 package com.zoey.ppmtools.services;
 
 import com.zoey.ppmtools.domain.User;
+import com.zoey.ppmtools.exceptions.UsernameAlreadyExistsException;
 import com.zoey.ppmtools.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,17 +17,16 @@ public class UserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public User saveUser(User newUser) {
-//        try {
-//            newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
-//            // username unique (exception)
-//            // make sure confirm password and password match
-//            // we dont persist or show the confirm password
-//            return userRepository.save(newUser);
-//        } catch (Exception e) {
-//            // handle exceptions
-//        }
-        newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
-        return userRepository.save(newUser);
+        try {
+            newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
+            // username unique (exception)
+            newUser.setUsername(newUser.getUsername());
+            // we dont persist or show the confirm password
+            newUser.setConfirmPassword("");
+            return userRepository.save(newUser);
+        } catch (Exception e) {
+            throw new UsernameAlreadyExistsException("Username '" + newUser.getUsername() + "' already exists");
+        }
     }
 
 

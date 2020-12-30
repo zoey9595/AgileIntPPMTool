@@ -3,6 +3,7 @@ package com.zoey.ppmtools.web;
 import com.zoey.ppmtools.domain.User;
 import com.zoey.ppmtools.services.MapValidationErrorService;
 import com.zoey.ppmtools.services.UserService;
+import com.zoey.ppmtools.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,9 +25,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserValidator userValidator;
+
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody User user, BindingResult result) {
-        // validate password match
+        userValidator.validate(user, result);
 
         ResponseEntity<?> errorMap = mapValidationErrorService.mapValidationService(result);
         if (errorMap != null) return errorMap;
