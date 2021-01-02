@@ -3,8 +3,6 @@ package com.zoey.ppmtools.services;
 import com.zoey.ppmtools.domain.Backlog;
 import com.zoey.ppmtools.domain.ProjectTask;
 import com.zoey.ppmtools.exceptions.ProjectNotFoundException;
-import com.zoey.ppmtools.repositories.BacklogRepository;
-import com.zoey.ppmtools.repositories.ProjectRepository;
 import com.zoey.ppmtools.repositories.ProjectTaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,13 +11,7 @@ import org.springframework.stereotype.Service;
 public class ProjectTaskService {
 
     @Autowired
-    private BacklogRepository backlogRepository;
-
-    @Autowired
     private ProjectTaskRepository projectTaskRepository;
-
-    @Autowired
-    private ProjectRepository projectRepository;
 
     @Autowired
     private ProjectService projectService;
