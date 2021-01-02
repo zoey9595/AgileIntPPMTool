@@ -59,12 +59,15 @@ class AddProjectTask extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <Link to={`/projectBoard/${id}`} className="btn btn-light">
+              <Link to={`/projectBoard/${id}`} className="btn btn-light mb-4">
                 Back to Project Board
               </Link>
-              <h4 className="display-4 text-center">Add Project Task</h4>
-              <p className="lead text-center">Project Name + Project Code</p>
+              <h1 className="text-center">Add Project Task</h1>
+              <p className="lead text-center">
+                Project: {this.state.projectIdentifier}
+              </p>
               <form onSubmit={this.onSubmit}>
+                <h6>Task name</h6>
                 <div className="form-group">
                   <input
                     type="text"
@@ -80,10 +83,10 @@ class AddProjectTask extends Component {
                     <div className="invalid-feedback">{errors.summary}</div>
                   )}
                 </div>
+                <h6>Acceptance Criteria</h6>
                 <div className="form-group">
                   <textarea
                     className="form-control form-control-lg"
-                    placeholder="Acceptance Criteria"
                     name="acceptanceCriteria"
                     value={this.state.acceptanceCriteria}
                     onChange={this.onChange}
@@ -126,10 +129,9 @@ class AddProjectTask extends Component {
                     <option value="DONE">DONE</option>
                   </select>
                 </div>
-                <input
-                  type="submit"
-                  className="btn btn-primary btn-block mt-4"
-                />
+                <div className="text-center">
+                  <input type="submit" className="btn start-button mt-4" />
+                </div>
               </form>
             </div>
           </div>

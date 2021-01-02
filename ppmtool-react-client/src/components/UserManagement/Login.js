@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { login } from "../../actions/securityActions";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -52,8 +53,17 @@ class Login extends Component {
       <div className="login">
         <div className="container">
           <div className="row">
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center mb-5">Log In</h1>
+            <div className="col-md-5 text-center register-side">
+              <h1 className="mb-5">Hello, Friend!</h1>
+              <p className="mb-5">
+                Enter your personal details and start journey with us
+              </p>
+              <Link to="/register" className="btn btn-lg btn-ghost">
+                Sign Up
+              </Link>
+            </div>
+            <div className="col-md-7 login-side">
+              <h1 className="text-center mb-5">Log In</h1>
               <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                   <input
@@ -85,7 +95,12 @@ class Login extends Component {
                     <div className="invalid-feedback">{errors.password}</div>
                   )}
                 </div>
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                <div className="text-center">
+                  <input
+                    type="submit"
+                    className="btn btn-lg start-button mt-4"
+                  />
+                </div>
               </form>
             </div>
           </div>

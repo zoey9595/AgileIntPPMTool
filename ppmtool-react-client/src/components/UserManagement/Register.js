@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { createNewUser } from "../../actions/securityActions";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -53,9 +54,8 @@ class Register extends Component {
       <div className="register">
         <div className="container">
           <div className="row">
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Sign Up</h1>
-              <p className="lead text-center">Create your Account</p>
+            <div className="col-md-7 register-side-2">
+              <h1 className="text-center mb-5">Sign Up</h1>
               <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                   <input
@@ -120,8 +120,22 @@ class Register extends Component {
                     </div>
                   )}
                 </div>
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                <div className="text-center">
+                  <input
+                    type="submit"
+                    className="btn btn-lg start-button text-center mt-4"
+                  />
+                </div>
               </form>
+            </div>
+            <div className="col-md-5 text-center login-side-2">
+              <h1 className="mb-5">Welcome Back!</h1>
+              <p className="mb-5">
+                To keep connected with us please login with your personal info{" "}
+              </p>
+              <Link to="/login" className="btn btn-lg btn-ghost">
+                Log In
+              </Link>
             </div>
           </div>
         </div>

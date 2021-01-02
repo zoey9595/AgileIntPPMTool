@@ -51,8 +51,7 @@ class AddProject extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h5 className="display-4 text-center">Create Project form</h5>
-              <hr />
+              <h1 className="text-center mb-5">Create Project form</h1>
               <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                   <input
@@ -120,10 +119,9 @@ class AddProject extends Component {
                     onChange={this.onChange}
                   />
                 </div>
-                <input
-                  type="submit"
-                  className="btn btn-primary btn-block mt-4"
-                />
+                <div className="text-center">
+                  <input type="submit" className="btn start-button mt-4" />
+                </div>
               </form>
             </div>
           </div>

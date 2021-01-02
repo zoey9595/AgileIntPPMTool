@@ -99,16 +99,17 @@ class UpdateProjectTask extends Component {
             <div className="col-md-8 m-auto">
               <Link
                 to={`/projectBoard/${this.state.projectIdentifier}`}
-                className="btn btn-light"
+                className="btn btn-light mb-4"
               >
                 Back to Project Board
               </Link>
-              <h4 className="display-4 text-center">Update Project Task</h4>
+              <h1 className="text-center">Update Project Task</h1>
               <p className="lead text-center">
                 Project Name: {this.state.projectIdentifier} | Project Task ID:{" "}
                 {this.state.projectSequence}
               </p>
               <form onSubmit={this.onSubmit}>
+                <h6>Task name</h6>
                 <div className="form-group">
                   <input
                     type="text"
@@ -124,6 +125,7 @@ class UpdateProjectTask extends Component {
                     <div className="invalid-feedback">{errors.summary}</div>
                   )}
                 </div>
+                <h6>Acceptance Criteria</h6>
                 <div className="form-group">
                   <textarea
                     className="form-control form-control-lg"
@@ -143,6 +145,7 @@ class UpdateProjectTask extends Component {
                     onChange={this.onChange}
                   />
                 </div>
+                <h6>Priority</h6>
                 <div className="form-group">
                   <select
                     className="form-control form-control-lg"
@@ -156,6 +159,7 @@ class UpdateProjectTask extends Component {
                     <option value={3}>Low</option>
                   </select>
                 </div>
+                <h6>Status</h6>
                 <div className="form-group">
                   <select
                     className="form-control form-control-lg"
@@ -169,10 +173,9 @@ class UpdateProjectTask extends Component {
                     <option value="DONE">DONE</option>
                   </select>
                 </div>
-                <input
-                  type="submit"
-                  className="btn btn-primary btn-block mt-4"
-                />
+                <div className="text-center">
+                  <input type="submit" className="btn start-button mt-4" />
+                </div>
               </form>
             </div>
           </div>

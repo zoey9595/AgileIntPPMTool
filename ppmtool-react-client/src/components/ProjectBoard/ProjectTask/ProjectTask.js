@@ -21,11 +21,11 @@ class ProjectTask extends Component {
         priorityString = "HIGH";
         break;
       case 2:
-        priorityClass = "bg-warning text-light";
+        priorityClass = "bg-primary text-light";
         priorityString = "MEDIUM";
         break;
       default:
-        priorityClass = "bg-info text-light";
+        priorityClass = "bg-secondary text-light";
         priorityString = "LOW";
     }
 
@@ -41,12 +41,12 @@ class ProjectTask extends Component {
           </p>
           <Link
             to={`/updateProjectTask/${project_task.projectIdentifier}/${project_task.projectSequence}`}
-            className="btn btn-primary"
+            className="btn btn-link"
           >
             View / Update
           </Link>
           <button
-            className="btn btn-danger ml-4"
+            className="btn btn-link ml-4"
             onClick={this.onDeleteClick.bind(
               this,
               project_task.projectIdentifier,

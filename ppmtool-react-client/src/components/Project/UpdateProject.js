@@ -76,9 +76,9 @@ class UpdateProject extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h5 className="display-4 text-center">Update Project form</h5>
-              <hr />
+              <h1 className="text-center mb-5">Update Project form</h1>
               <form onSubmit={this.onSubmit}>
+                <h6>Name</h6>
                 <div className="form-group">
                   <input
                     type="text"
@@ -94,6 +94,7 @@ class UpdateProject extends Component {
                     <div className="invalid-feedback">{errors.projectName}</div>
                   )}
                 </div>
+                <h6>ID</h6>
                 <div className="form-group">
                   <input
                     type="text"
@@ -104,6 +105,7 @@ class UpdateProject extends Component {
                     disabled
                   />
                 </div>
+                <h6>Description</h6>
                 <div className="form-group">
                   <textarea
                     className={classnames("form-control form-control-lg", {
@@ -138,10 +140,9 @@ class UpdateProject extends Component {
                     onChange={this.onChange}
                   />
                 </div>
-                <input
-                  type="submit"
-                  className="btn btn-primary btn-block mt-4"
-                />
+                <div className="text-center">
+                  <input type="submit" className="btn start-button mt-4" />
+                </div>
               </form>
             </div>
           </div>
